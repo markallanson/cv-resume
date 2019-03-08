@@ -1,5 +1,5 @@
 out := ./out
-cv_filename := mark-allanson-cv
+cv_filename = mark-allanson-cv
 metadata := --metadata pagetitle="Mark Allanson - CV"
 default_styles := -c ./styles/basic.css
 pandoc_exec = pandoc -s $(metadata) -o $(out)/$(cv_filename).$(cv_extension) $(default_styles)
@@ -16,11 +16,14 @@ personal-statement.md \
 1999-triniteq.md education.md other.md
 endef
 
-all: clean html pdf docx markdown
+all: clean html html_index pdf docx markdown
 
 html: cv_extension:=html
 html: create_out
 	$(pandoc_exec) --self-contained $(input_files) other-formats-links.md
+
+html_index: html
+	cp $(out)/$(cv_filename).html $(out)/index.html
 
 pdf: cv_extension:=pdf
 pdf: create_out
@@ -39,4 +42,3 @@ create_out:
 
 clean:
 	rm -rf $(out)
-
