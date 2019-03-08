@@ -9,5 +9,5 @@ The resume build system uses and requires an installation of [make](https://www.
 
 Building
 --------
-Simply run `make all` to build all resume formats into the `.out/` directory. There are also targets representing
-the format you want to build `html`, `pdf`, `docx` and `md`.
+Simply run `make all` to build all resume formats into the `./out/` directory. There are also targets representing
+the format you want to build `html`, `pdf`, `docx` and `markdown`.
