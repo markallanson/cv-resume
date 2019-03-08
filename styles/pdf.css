@@ -1,0 +1,24 @@
+/** PDF Generation settings for generation via wkhtmltopdf */
+html {
+    font-size: 10pt;
+}
+
+body {
+    max-width: 100%;
+}
+
+h2 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+/** Hacky solution to work around no proper support for page-break-after: avoid in wkhtmltopdf */
+h2::after {
+    content: "";
+    display: block;
+    height: 100px;
+    margin-bottom: -100px;
+}
+
+li {
+    page-break-inside: avoid;
+}
