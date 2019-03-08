@@ -11,6 +11,7 @@ define input_files
 ./sections/2010-morgan-stanley.md \
 ./sections/2009-accenture-jpm.md \
 ./sections/2006-accenture-assureweb.md \
+./sections/2005-accenture-ffe.md \
 ./sections/2004-accenture-natgrid.md \
 ./sections/2004-accenture-thameswater.md \
 ./sections/1999-triniteq.md \
