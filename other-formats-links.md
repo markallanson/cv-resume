@@ -1,0 +1,4 @@
+
+---
+
+   > [Pdf](https://markallanson.net/cv/mark-allanson-cv.pdf) • [Microsoft Word](https://markallanson.net/cv/mark-allanson-cv.docx) • [Markdown](https://markallanson.net/cv/mark-allanson-cv.md)
