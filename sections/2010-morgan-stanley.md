@@ -9,7 +9,7 @@ confirmations team.
 * Experience with the design & development of applications for execution in containerized "cloud" environments,
   specifically writing software that can dynamically scale horizontally as demand requires.
 * Deep understanding of text, electronic and other methods of confirming and matching trades.
-* Worked closely with business operations departments to development and on board products into the confirmation systems 
+* Worked closely with business operations departments to develop and on board products into the confirmation systems 
   for Interest Rate Derivative, Credit Derivative, Commodity and Equity Swap asset classes.
 * Mentoring of other team members both informally and formally via critical but constructive appraisal of deliverables 
   prior to release.
