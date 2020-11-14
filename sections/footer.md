@@ -1,4 +1,4 @@
 
 ---
 
-   > You can find the latest version online at [https://markallanson.net/cv](http://markallanson.net/cv)
+   > You can find the latest version online at [https://cv.mark.allanson.org](http://cv.mark.allanson.org)

@@ -1,1 +1,1 @@
-   > [Pdf](https://markallanson.net/cv/mark-allanson-cv.pdf) • [Microsoft Word](https://markallanson.net/cv/mark-allanson-cv.docx) • [Markdown](https://markallanson.net/cv/mark-allanson-cv.md)
+   > [Pdf](https://cv.mark.allanson.org/mark-allanson-cv.pdf) • [Microsoft Word](https://cv.mark.allanson.org/mark-allanson-cv.docx) • [Markdown](https://cv.mark.allanson.org/mark-allanson-cv.md)
