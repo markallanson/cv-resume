@@ -31,7 +31,14 @@ html_index: html
 
 pdf: cv_extension:=pdf
 pdf: create_out
-	$(pandoc_exec) -t html -V papersize=A4 -c ./styles/pdf.css $(input_files)
+	$(pandoc_exec) \
+		--pdf-engine=xelatex \
+		-V papersize=A4 \
+		-V geometry:margin=2cm \
+		-V fontsize=10pt \
+		-V documentclass=article \
+		-c ./styles/pdf.css \
+		$(input_files)
 
 docx: cv_extension:=docx
 markdown: metadata:=

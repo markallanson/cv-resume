@@ -1,24 +1,30 @@
-/** PDF Generation settings for generation via wkhtmltopdf */
-html {
+/* Base styles */
+body {
+    width: 100%;
+    max-width: 100%;
     font-size: 10pt;
 }
 
-body {
-    max-width: 100%;
-}
-
+/* Headings */
 h2 {
-    page-break-after: avoid;
-    page-break-inside: avoid;
-}
-/** Hacky solution to work around no proper support for page-break-after: avoid in wkhtmltopdf */
-h2::after {
-    content: "";
-    display: block;
-    height: 100px;
-    margin-bottom: -100px;
+    break-after: avoid;
+    break-inside: avoid;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
 }
 
+/* List items */
 li {
-    page-break-inside: avoid;
+    break-inside: avoid;
 }
+
+/* Additional styles to help with spacing */
+p {
+    margin-bottom: 0.5em;
+}
+
+/* Ensure proper spacing after sections */
+section {
+    margin-bottom: 1em;
+}
+

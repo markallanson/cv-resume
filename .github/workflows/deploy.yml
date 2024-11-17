@@ -1,0 +1,140 @@
+name: Build and Deploy to Pages
+on:
+  push:
+    branches: [ "main", "wf" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      timestamp: ${{ steps.timestamp.outputs.value }}
+    steps:
+      - id: timestamp
+        run: echo "value=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_OUTPUT
+
+  build-html:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+      - name: Build HTML
+        run: |
+          mkdir -p out
+          make html html_index
+      - name: Upload HTML artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: html-output-${{ needs.setup.outputs.timestamp }}
+          path: out/*.html
+          retention-days: 1
+
+  build-pdf:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            pandoc \
+            texlive-xetex \
+            texlive-fonts-recommended \
+            texlive-extra-utils
+      - name: Build PDF
+        run: |
+          mkdir -p out
+          make pdf
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pdf-output-${{ needs.setup.outputs.timestamp }}
+          path: out/*.pdf
+          retention-days: 1
+
+  build-docx:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+      - name: Build DOCX
+        run: |
+          mkdir -p out
+          make docx
+      - name: Upload DOCX artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: docx-output-${{ needs.setup.outputs.timestamp }}
+          path: out/*.docx
+          retention-days: 1
+
+  build-markdown:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+      - name: Build Markdown
+        run: |
+          mkdir -p out
+          make markdown
+      - name: Upload Markdown artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: markdown-output-${{ needs.setup.outputs.timestamp }}
+          path: out/*.md
+          retention-days: 1
+
+  combine-and-deploy:
+    needs: [setup, build-html, build-pdf, build-docx, build-markdown]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Create output directory
+        run: mkdir -p ./out
+      
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: ./out
+
+      - name: Flatten directory structure
+        run: |
+          cd out
+          find . -mindepth 2 -type f -exec mv {} . \;
+          find . -type d -empty -delete
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload combined artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './out'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
