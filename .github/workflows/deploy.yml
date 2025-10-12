@@ -36,7 +36,7 @@ jobs:
           mkdir -p out
           make html html_index
       - name: Upload HTML artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: html-output-${{ needs.setup.outputs.timestamp }}
           path: out/*.html
@@ -60,7 +60,7 @@ jobs:
           mkdir -p out
           make pdf
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pdf-output-${{ needs.setup.outputs.timestamp }}
           path: out/*.pdf
@@ -80,7 +80,7 @@ jobs:
           mkdir -p out
           make docx
       - name: Upload DOCX artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docx-output-${{ needs.setup.outputs.timestamp }}
           path: out/*.docx
@@ -100,7 +100,7 @@ jobs:
           mkdir -p out
           make markdown
       - name: Upload Markdown artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: markdown-output-${{ needs.setup.outputs.timestamp }}
           path: out/*.md
@@ -117,7 +117,7 @@ jobs:
         run: mkdir -p ./out
       
       - name: Download all artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: ./out
 
